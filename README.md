@@ -3,10 +3,6 @@ Reactのチュートリアルのためのリポジトリ
 
 ## 環境構築
 
-### 必要なもの
-
-- [Docker Desktop](https://www.docker.com/products/docker-desktop/)
-
 ### 起動方法
 
 Docker Desktop を起動した状態で、リポジトリのルートで以下を実行します。
