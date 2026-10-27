@@ -39,3 +39,11 @@ export const XWins = {
     xIsNext: false,
   },
 };
+
+// 盤面を△で埋め尽くした状態のboardのstoryを作成
+export const FilledWithTriangles = {
+  args: {
+    squares: Array(9).fill('△'),
+    xIsNext: false,
+  }
+}
