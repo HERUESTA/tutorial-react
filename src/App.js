@@ -1,14 +1,14 @@
 import { useState } from 'react';
 
-function Square({ value, onSquareClick }) {
+export function Square({ value, onSquareClick, label }) {
   return (
-    <button className="square" onClick={onSquareClick}>
+    <button className="square" onClick={onSquareClick} aria-label={label}>
       {value}
     </button>
   );
 }
 
-function Board({ xIsNext, squares, onPlay }) {
+export function Board({ xIsNext, squares, onPlay }) {
   function handleClick(i) {
     if (calculateWinner(squares) || squares[i]) {
       return;
@@ -20,6 +20,17 @@ function Board({ xIsNext, squares, onPlay }) {
       nextSquares[i] = 'O';
     }
     onPlay(nextSquares);
+  }
+
+  function renderSquare(i) {
+    const label = `${Math.floor(i / 3) + 1}行${(i % 3) + 1}列`;
+    return (
+      <Square
+        value={squares[i]}
+        label={label}
+        onSquareClick={() => handleClick(i)}
+      />
+    );
   }
 
   const winner = calculateWinner(squares);
@@ -34,19 +45,13 @@ function Board({ xIsNext, squares, onPlay }) {
     <>
       <div className="status">{status}</div>
       <div className="board-row">
-        <Square value={squares[0]} onSquareClick={() => handleClick(0)} />
-        <Square value={squares[1]} onSquareClick={() => handleClick(1)} />
-        <Square value={squares[2]} onSquareClick={() => handleClick(2)} />
+        {renderSquare(0)}{renderSquare(1)}{renderSquare(2)}
       </div>
       <div className="board-row">
-        <Square value={squares[3]} onSquareClick={() => handleClick(3)} />
-        <Square value={squares[4]} onSquareClick={() => handleClick(4)} />
-        <Square value={squares[5]} onSquareClick={() => handleClick(5)} />
+        {renderSquare(3)}{renderSquare(4)}{renderSquare(5)}
       </div>
       <div className="board-row">
-        <Square value={squares[6]} onSquareClick={() => handleClick(6)} />
-        <Square value={squares[7]} onSquareClick={() => handleClick(7)} />
-        <Square value={squares[8]} onSquareClick={() => handleClick(8)} />
+        {renderSquare(6)}{renderSquare(7)}{renderSquare(8)}
       </div>
     </>
   );
