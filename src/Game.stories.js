@@ -27,12 +27,14 @@ export const FirstMove = {
 
 export const XWins = {
   play: async ({ canvas, userEvent }) => {
-    const squares = canvas.getAllByRole('button')
-    await userEvent.click(squares[0])
-    await userEvent.click(squares[1])
-    await userEvent.click(squares[3])
-    await userEvent.click(squares[4])
-    await userEvent.click(squares[6])
+    const squares = canvas.getAllByRole('button', { name });
+
+    await userEvent.click(suqare('1行1列')); // X
+    await userEvent.click(suqare('1行2列')); // X
+    await userEvent.click(suqare('2行1列')); // X
+    await userEvent.click(suqare('2行2列')); // X
+    await userEvent.click(suqare('3行1列')); // X
+
     const text = canvas.getByText('Winner: X')
     await expect(text).toBeInTheDocument()
 
