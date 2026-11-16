@@ -4,3 +4,6 @@ build/
 
 *storybook.log
 storybook-static
+
+# Chromatic のプロジェクトトークンなど
+.env
